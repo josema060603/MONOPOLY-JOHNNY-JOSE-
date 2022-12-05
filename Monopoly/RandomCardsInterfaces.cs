@@ -1,7 +1,7 @@
 namespace Monopoly;
 public interface IRandomCard : ISpacing
 {
-    public void DoAThing(Player player, Board board);
+    public void DoAThing(Player player);
 
 }
 public class CommunityChest : ISpacing, IRandomCard
@@ -12,7 +12,7 @@ public class CommunityChest : ISpacing, IRandomCard
     }
     public int Id { get; set; }
 
-    public void DoAThing(Player player, Board board)
+    public void DoAThing(Player player)
     {
         int probability = new Random().Next(0, 7);
         if (probability <= 5)
@@ -25,6 +25,12 @@ public class CommunityChest : ISpacing, IRandomCard
             player.CurrentPosition = 10;
         }
     }
+
+    void ISpacing.Action(Player player)
+    {
+        DoAThing(player);
+    }
+
     public static bool operator ==(CommunityChest property, CommunityChest property2)
     { //EXTRA POINTS: OPERATOR OVERLOADING
         if (property.Id == property2.Id)
@@ -58,7 +64,8 @@ public class Chance : ISpacing, IRandomCard
 
     public int Id { get; set; }
 
-    public void DoAThing(Player player, Board board)
+
+    public void DoAThing(Player player)
     {
         int probability = new Random().Next(0, 7);
         if (probability <= 1)
@@ -71,7 +78,13 @@ public class Chance : ISpacing, IRandomCard
             player.CurrentPosition = 10;
         }
     }
-     public static bool operator ==(Chance property, Chance property2)
+
+    void ISpacing.Action(Player player)
+    {
+        DoAThing(player);
+    }
+
+    public static bool operator ==(Chance property, Chance property2)
     { //EXTRA POINTS: OPERATOR OVERLOADING
         if (property.Id == property2.Id)
         {

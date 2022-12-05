@@ -10,3 +10,15 @@ C:\Users\Usuario\Desktop\Monopoly-Johnny-Jose\Monopoly\obj\Debug\net6.0\Monopoly
 C:\Users\Usuario\Desktop\Monopoly-Johnny-Jose\Monopoly\obj\Debug\net6.0\refint\Monopoly.dll
 C:\Users\Usuario\Desktop\Monopoly-Johnny-Jose\Monopoly\obj\Debug\net6.0\Monopoly.pdb
 C:\Users\Usuario\Desktop\Monopoly-Johnny-Jose\Monopoly\obj\Debug\net6.0\ref\Monopoly.dll
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\bin\Debug\net6.0\Monopoly.deps.json
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\bin\Debug\net6.0\Monopoly.dll
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\bin\Debug\net6.0\ref\Monopoly.dll
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\bin\Debug\net6.0\Monopoly.pdb
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\obj\Debug\net6.0\Monopoly.csproj.AssemblyReference.cache
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\obj\Debug\net6.0\Monopoly.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\obj\Debug\net6.0\Monopoly.AssemblyInfoInputs.cache
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\obj\Debug\net6.0\Monopoly.AssemblyInfo.cs
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\obj\Debug\net6.0\Monopoly.csproj.CoreCompileInputs.cache
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\obj\Debug\net6.0\Monopoly.dll
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\obj\Debug\net6.0\ref\Monopoly.dll
+C:\Users\DELL\CS1410FP\MONOPOLY-JOHNNY-JOSE-\Monopoly\obj\Debug\net6.0\Monopoly.pdb

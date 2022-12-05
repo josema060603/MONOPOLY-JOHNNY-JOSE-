@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 namespace Monopoly.Test;
+using System;
 
 public class Tests
 {
@@ -12,7 +13,8 @@ public class Tests
     [Test]
     public void TestBoard()
     {
-        var board = new Board(new Player?[] { new Player("Jose"), new Player("Hose"), new Player("Joseh"), new Player("Jhose"), new Player("Joshe") });
+        var path="../../../../properties.csv";
+        var board = new Board(new Player?[] { new Player("Jose"), new Player("Hose"), new Player("Joseh"), new Player("Jhose"), new Player("Joshe") }, path);
         var testChest = board.GameBoard[33].Item1;
         Assert.IsTrue(new CommunityChest("33")==(CommunityChest) testChest);
     }
@@ -24,7 +26,7 @@ public class Tests
     {
         FreeParkingLot freeparkinglot = new FreeParkingLot();
         int IdOfFreeParkingLot = freeparkinglot.Id;
-        Assert.AreEqual(IdOfFreeParkingLot, 21);
+        Assert.AreEqual(IdOfFreeParkingLot, 20);
     }
     [Test]
     public void TestFreeParkingLotProperties2()
@@ -58,10 +60,10 @@ public class Tests
     public void TestJail()
     {
         Jail jail = new Jail();
-        Assert.AreEqual(11, jail.Id);
+        Assert.AreEqual(10, jail.Id);
 
         GoToJail gotojail = new GoToJail();
-        Assert.AreEqual(31, gotojail.Id);
+        Assert.AreEqual(30, gotojail.Id);
 
         StartingPoint startingpoint = new StartingPoint();
         Assert.AreEqual(0, startingpoint.Id);
@@ -72,7 +74,8 @@ public class Tests
     {
         string[] characs = { "10", "Johnny", "8", "7", "6", "5", "4", "3", "2", "1", "3" };
         Property newproperty = new Property(characs);
-        newproperty.AddGreenHouse();
+        var Johnny= new Player("Johnny");
+        newproperty.AddGreenHouse(Johnny);
         Assert.AreEqual(1, newproperty.GreenHouses);
     }
     [Test]
@@ -80,8 +83,9 @@ public class Tests
     {
         string[] characs = { "10", "Johnny", "8", "7", "6", "5", "4", "3", "2", "1", "3" };
         Property newproperty2 = new Property(characs);
-        newproperty2.AddGreenHouse();
-        newproperty2.AddGreenHouse();
+        var Johnny= new Player("Johnny");
+        newproperty2.AddGreenHouse(Johnny);
+        newproperty2.AddGreenHouse(Johnny);
         Assert.AreEqual(2, newproperty2.GreenHouses);
     }
     [Test]

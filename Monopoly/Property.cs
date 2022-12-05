@@ -12,9 +12,10 @@ public class Property : ISpacing  //requirement 6: inheritance
     public Color color { get; protected set; }
 
     public string Name { get; protected set; }
+    public bool colorSetComplete{get{return colorSetComplete;} set{colorSetComplete=value; if(value==true){Rent=RentWithColorSet;}}  }
     public Player Owner      //Requirement 11: Properties
     {
-        get; protected set;
+        get; set;
     }
     public int Price
     {
@@ -80,15 +81,22 @@ public class Property : ISpacing  //requirement 6: inheritance
         }
     }
 
-  
-    public void AddGreenHouse()
+
+    public void AddGreenHouse(Player player)
     {
 
-        GreenHouses++;
-        if (GreenHouses == 1) { Rent = GreenHouseRentIncrement1; }
-        else if (GreenHouses == 2) { Rent = GreenHouseRentIncrement2; }
-        else if (GreenHouses == 3) { Rent = GreenHouseRentIncrement3; }
-        else if (GreenHouses == 4) { Rent = GreenHouseRentIncrement4; }
+        if (this.colorSetComplete)
+        {
+            GreenHouses++;
+            if (GreenHouses == 1) { Rent = GreenHouseRentIncrement1; player.moneyToPay += GreenHouseRentIncrement1 * 2; }
+            else if (GreenHouses == 2) { Rent = GreenHouseRentIncrement2; player.moneyToPay += GreenHouseRentIncrement2 * 2; }
+            else if (GreenHouses == 3) { Rent = GreenHouseRentIncrement3; player.moneyToPay += GreenHouseRentIncrement3 * 2; }
+            else if (GreenHouses == 4) { Rent = GreenHouseRentIncrement4; player.moneyToPay += GreenHouseRentIncrement4 * 2; }
+        }
+        else
+        {
+            throw new Exception();
+        }
 
 
     }
@@ -98,27 +106,55 @@ public class Property : ISpacing  //requirement 6: inheritance
         {
             Hotel++;
         }
+        else
+        {
+            throw new Exception();
+        }
 
     }
-   public static bool operator == (Property property, Property property2){ //EXTRA POINTS: OPERATOR OVERLOADING
-    if( property.Id == property2.Id){
-        return true;
-    }
-    else{
-        return false;
-    }
-    }
-
-    public static bool operator != (Property property, Property property2){
-    if( property.Id == property2.Id){
-        return false;
-    }
-    else{
-        return true;
+    public static bool operator ==(Property property, Property property2)
+    { //EXTRA POINTS: OPERATOR OVERLOADING
+        if (property.Id == property2.Id)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-   }
-  
+    public static bool operator !=(Property property, Property property2)
+    {
+        if (property.Id == property2.Id)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+
+    }
+    static public void ExchangeProperty(Player player1, Property property1, Player player2, Property property2)
+    {
+        property1.SetNewOwner(player1, player2, 0);
+        property2.SetNewOwner(player2, player1, 0);
+    }
+
+    void ISpacing.Action(Player player)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static IEnumerable<Property> operator +(IEnumerable<Property> groupOfProperties, Property property)
+    {
+        var output = new List<Property>(groupOfProperties);
+        output.Add(property);
+        return output;
+    }
+
 
     public enum Color { Brown, SkyBlue, Pink, Orange, Red, Yellow, Green, Blue }   //feature 5: enumerator type
 

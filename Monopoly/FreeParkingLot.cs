@@ -7,4 +7,8 @@ public class FreeParkingLot : ISpacing
         player.Money = player.Money;
     }
 
+    void ISpacing.Action(Player player)
+    {
+        FreeParking(player);
+    }
 }

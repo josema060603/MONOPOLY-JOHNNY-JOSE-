@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "Monopoly/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Monopoly.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Monopoly.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Monopoly/1.0.0": {
+      "type": "project",
+      "path": "../Monopoly/Monopoly.csproj",
+      "msbuildProject": "../Monopoly/Monopoly.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Monopoly >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\DELL\\.nuget\\packages\\": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\CS1410 FINAL PROYECT\\Monopoly.Main\\Monopoly.Main.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\CS1410FP\\MONOPOLY-JOHNNY-JOSE-\\Monopoly.Main\\Monopoly.Main.csproj",
       "projectName": "Monopoly.Main",
-      "projectPath": "C:\\Users\\DELL\\CS1410 FINAL PROYECT\\Monopoly.Main\\Monopoly.Main.csproj",
+      "projectPath": "C:\\Users\\DELL\\CS1410FP\\MONOPOLY-JOHNNY-JOSE-\\Monopoly.Main\\Monopoly.Main.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\CS1410 FINAL PROYECT\\Monopoly.Main\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\CS1410FP\\MONOPOLY-JOHNNY-JOSE-\\Monopoly.Main\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -31,7 +50,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\DELL\\CS1410FP\\MONOPOLY-JOHNNY-JOSE-\\Monopoly\\Monopoly.csproj": {
+              "projectPath": "C:\\Users\\DELL\\CS1410FP\\MONOPOLY-JOHNNY-JOSE-\\Monopoly\\Monopoly.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

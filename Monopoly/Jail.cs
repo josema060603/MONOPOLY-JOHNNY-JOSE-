@@ -10,17 +10,9 @@ public class Jail : ISpacing  //Requireement 2: Second class definition
             return true;
         return false;
     }
-}
-public class GoToJail : ISpacing
-{
 
-    public int Id { get; } = 30;
-}
-public class StartingPoint : ISpacing
-{
-    public int Id
+    void ISpacing.Action(Player player)
     {
-        get;
-        set;
-    }=0;
+        throw new NotImplementedException();
+    }
 }
