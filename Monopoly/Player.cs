@@ -13,7 +13,7 @@ public struct Player   //feature 4: struct definition
     public int moneyToPay
     {
         get; set;
-    }=0;
+    }
     
     public IEnumerable<Property> Properties  //Requirement 15: Use of one build-in generic function
     {
@@ -21,6 +21,7 @@ public struct Player   //feature 4: struct definition
     }
     public Player(string name)
     {
+        moneyToPay=0;
         CurrentPosition=0;
         Name = name;
         Money = 1500;

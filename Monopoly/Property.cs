@@ -13,10 +13,8 @@ public class Property : ISpacing  //requirement 6: inheritance
 
     public string Name { get; protected set; }
     public bool colorSetComplete{get{return colorSetComplete;} set{colorSetComplete=value; if(value==true){Rent=RentWithColorSet;}}  }
-    public Player Owner      //Requirement 11: Properties
-    {
-        get; set;
-    }
+    public Player Owner;      //Requirement 11: Properties
+
     public int Price
     {
         get; protected set;
@@ -61,7 +59,7 @@ public class Property : ISpacing  //requirement 6: inheritance
     public virtual void SetCharacteristics(string[] characs)
     {
 
-        if (characs.Length == 10)
+        if (characs.Length == 11)
         {
             Id = int.Parse(characs[0]);
             Name = characs[1];
@@ -85,7 +83,7 @@ public class Property : ISpacing  //requirement 6: inheritance
     public void AddGreenHouse(Player player)
     {
 
-        if (this.colorSetComplete)
+        if (this.colorSetComplete && this.GreenHouses<4)
         {
             GreenHouses++;
             if (GreenHouses == 1) { Rent = GreenHouseRentIncrement1; player.moneyToPay += GreenHouseRentIncrement1 * 2; }
@@ -102,7 +100,7 @@ public class Property : ISpacing  //requirement 6: inheritance
     }
     public void AddHotel()
     {
-        if (this.GreenHouses > 4)
+        if (this.GreenHouses > 4 && this.Hotel<2)
         {
             Hotel++;
         }
@@ -143,9 +141,21 @@ public class Property : ISpacing  //requirement 6: inheritance
         property2.SetNewOwner(player2, player1, 0);
     }
 
-    void ISpacing.Action(Player player)
+    public virtual void Action(Player player)
     {
-        throw new NotImplementedException();
+        if(this.Owner.Name==null)
+        {
+            this.SetOwner(player);
+        }
+        else
+        {
+          this.PayRent(player);  
+        }
+    }
+    public virtual void PayRent(Player player)
+    {
+        player.moneyToPay+=this.Rent;
+        this.Owner.moneyToPay-=this.Rent;
     }
 
     public static IEnumerable<Property> operator +(IEnumerable<Property> groupOfProperties, Property property)

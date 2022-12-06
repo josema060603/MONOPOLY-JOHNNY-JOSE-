@@ -43,6 +43,22 @@ public class Railroad : Property, ISpacing  //Requirement 3: Third class definit
             return true;
         }
     }
+    public virtual void Action(Player player)
+    {
+        if(this.Owner.Name==null)
+        {
+            this.SetOwner(player);
+        }
+        else
+        {
+          this.PayRent(player);  
+        }
+    }
+    public virtual void PayRent(Player player)
+    {
+        player.moneyToPay+=this.Rent;
+        this.Owner.moneyToPay-=this.Rent;
+    }
 
 
 
