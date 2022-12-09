@@ -16,9 +16,6 @@ public class Railroad : Property, ISpacing  //Requirement 3: Third class definit
         Name = characs[1];
         Price = int.Parse(characs[2]);
         Rent = int.Parse(characs[3]);
-        Rent2Items = int.Parse(characs[4]);
-        Rent3Items = int.Parse(characs[5]);
-        Rent4Items = int.Parse(characs[6]);
     }
     public static bool operator ==(Railroad property, Railroad property2)
     { //EXTRA POINTS: OPERATOR OVERLOADING
@@ -43,23 +40,24 @@ public class Railroad : Property, ISpacing  //Requirement 3: Third class definit
             return true;
         }
     }
-    public virtual void Action(Player player)
+    public override void Action(Player player)
     {
-        if(this.Owner.Name==null)
+        if (this.Owner.Name == null)
         {
             this.SetOwner(player);
         }
         else
         {
-          this.PayRent(player);  
+            this.PayRent(player);
         }
     }
-    public virtual void PayRent(Player player)
+
+    static public void IncreaseRent(Railroad railroad)
     {
-        player.moneyToPay+=this.Rent;
-        this.Owner.moneyToPay-=this.Rent;
+
+        railroad.Rent *= 2;
     }
-
-
-
 }
+
+
+

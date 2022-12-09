@@ -26,10 +26,6 @@ public class Utilities : Property, ISpacing
           this.PayRent(player);  
         }
     }
-    public virtual void PayRent(Player player)
-    {
-        player.moneyToPay+=this.Rent;
-        this.Owner.moneyToPay-=this.Rent;
-    }
+
 
 }

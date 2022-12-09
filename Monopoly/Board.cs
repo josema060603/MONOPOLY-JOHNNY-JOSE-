@@ -22,7 +22,7 @@ public class Board    //requirement 1 a class definition
                 {
                     GameBoard[i] = new Tuple<ISpacing, Player?[]>(new Property(File.ReadAllLines(path)[i].Split(",")), new Player?[5]);
                 }
-                else if (File.ReadAllLines(path)[i].Split(",").Length == 7)
+                else if (File.ReadAllLines(path)[i].Split(",").Length == 4)
                 {
                     GameBoard[i] = new Tuple<ISpacing, Player?[]>(new Railroad(File.ReadAllLines(path)[i].Split(",")), new Player?[5]);
                 }
@@ -49,6 +49,7 @@ public class Board    //requirement 1 a class definition
     }
     public string GetBoardAsString(Player[] players)
     {
+
 
         string output = $@"
 |---------------------------------------------------------------------------------------------------------------------------|
@@ -100,15 +101,33 @@ public class Board    //requirement 1 a class definition
 
         return output;
     }
-    static public (int, int) RollDices(Player player)
+    static public Tuple<int, int> RollDices(Player player)
     {
         int numberDice1 = new Random().Next(1, 7);
         int numberDice2 = new Random().Next(1, 7);
-        return (numberDice1, numberDice2);
+        return new Tuple<int, int>(numberDice1, numberDice2);
     }
     //This method is the most important of the game 
-    public void ProcessTurn()
+    public void PlayersHere(Player?[] players, int CurrentPosition)
     {
-
+        List<string> toPrint = new List<string>();
+        foreach (var player in players)
+        {
+            if (player != null)
+            {
+                if (((Player)player).CurrentPosition == CurrentPosition)
+                {
+                    toPrint.Add($"[{((Player)player).token}]");
+                }
+                else
+                {
+                    toPrint.Add("[ ]");
+                }
+            }
+            else
+            {
+                toPrint.Add("[ ]");
+            }
+        }
     }
 }

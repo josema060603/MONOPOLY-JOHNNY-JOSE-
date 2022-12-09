@@ -7,6 +7,7 @@ public class GoToJail : ISpacing
     public void PlayerGoesToJail(Player player)
     {
         player.CurrentPosition=10;
+        player.wasSentInJail=true;
     }
     void ISpacing.Action(Player player)
     {
