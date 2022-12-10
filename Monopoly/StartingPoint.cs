@@ -8,7 +8,7 @@ public class StartingPoint : ISpacing
         set;
     }=0;
 
-    void ISpacing.Action(Player player)
+    void ISpacing.Action(ref Player player)
     {
         throw new NotImplementedException();
     }

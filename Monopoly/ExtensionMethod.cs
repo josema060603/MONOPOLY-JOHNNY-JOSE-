@@ -2,13 +2,13 @@ namespace Monopoly;
 
 public static class ExtensionMethod
 {
-    static public bool HasPlayerLost(this Player player)
+    static public bool HasPlayerLost(this ref Player player)
     {
         if (player.moneyToPay > player.Money)
             return true;
         return false;
     }
-    static public bool IsInJail(this Player player)
+    static public bool IsInJail(this ref Player player)
     {
         if (player.CurrentPosition == 10 && player.wasSentInJail)
             return true;
@@ -32,7 +32,7 @@ public static class ExtensionMethod
         }
     }
 
-    public static void SetOwner(this Property property, Player Owner)
+    public static void SetOwner(this Property property, ref Player Owner)
     {
 
         Owner.moneyToPay += property.Price;

@@ -3,12 +3,12 @@ public class FreeParkingLot : ISpacing
 {
     public int Id { get ; set ; }=20;
 
-    public void FreeParking(Player player){
+    public void FreeParking(ref Player player){
         player.Money = player.Money;
     }
 
-    public void Action(Player player)
+    public void Action(ref Player player)
     {
-        FreeParking(player);
+        FreeParking(ref player);
     }
 }

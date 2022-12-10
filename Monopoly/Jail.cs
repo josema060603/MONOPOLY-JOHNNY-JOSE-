@@ -4,14 +4,8 @@ public class Jail : ISpacing  //Requireement 2: Second class definition
 
     public int Id { get; } = 10;
 
-    public bool CanGetOutOfJail((int, int) dice)
-    {
-        if (dice.Item1 == dice.Item2)
-            return true;
-        return false;
-    }
 
-    void ISpacing.Action(Player player)
+    void ISpacing.Action(ref Player player)
     {
         throw new NotImplementedException();
     }

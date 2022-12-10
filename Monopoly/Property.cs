@@ -81,29 +81,63 @@ public class Property : ISpacing  //requirement 6: inheritance
     }
 
 
-    public void AddGreenHouse(Player player)
+    public void AddGreenHouse(ref Player player)
     {
 
-        if (this.colorSetComplete && this.GreenHouses < 4)
         {
-            GreenHouses++;
-            if (GreenHouses == 1) { Rent = GreenHouseRentIncrement1; player.moneyToPay += GreenHouseRentIncrement1 * 2; }
-            else if (GreenHouses == 2) { Rent = GreenHouseRentIncrement2; player.moneyToPay += GreenHouseRentIncrement2 * 2; }
-            else if (GreenHouses == 3) { Rent = GreenHouseRentIncrement3; player.moneyToPay += GreenHouseRentIncrement3 * 2; }
-            else if (GreenHouses == 4) { Rent = GreenHouseRentIncrement4; player.moneyToPay += GreenHouseRentIncrement4 * 2; }
-        }
-        else
-        {
-            throw new Exception();
+            if (this.colorSetComplete && this.GreenHouses < 4)
+            {
+                GreenHouses++;
+                if (GreenHouses == 1)
+                {
+                    Rent = GreenHouseRentIncrement1;
+                    if (player.moneyToPay < GreenHouseRentIncrement1)
+                    { throw new Exception(); }
+                    player.moneyToPay += GreenHouseRentIncrement1;
+                }
+                else if (GreenHouses == 2)
+                {
+                    Rent = GreenHouseRentIncrement2;
+                    if (player.moneyToPay < GreenHouseRentIncrement1)
+                    { throw new Exception(); }
+                    player.moneyToPay += GreenHouseRentIncrement2;
+                }
+                else if (GreenHouses == 3)
+                {
+                    Rent = GreenHouseRentIncrement3;
+                    if (player.moneyToPay < GreenHouseRentIncrement1)
+                    { throw new Exception(); }
+                    player.moneyToPay += GreenHouseRentIncrement3;
+                }
+                else if (GreenHouses == 4)
+                {
+                    Rent = GreenHouseRentIncrement4;
+                    if (player.moneyToPay < GreenHouseRentIncrement1)
+                    { throw new Exception(); }
+                    player.moneyToPay += GreenHouseRentIncrement4;
+                }
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
 
 
     }
-    public void AddHotel()
+    public void AddHotel(ref Player player)
     {
-        if (this.GreenHouses > 4 && this.Hotel < 2)
+        if (player.moneyToPay > HotelRentIncrement)
         {
-            Hotel++;
+            if (this.GreenHouses > 3 && this.Hotel < 2)
+            {
+                Hotel++;
+                player.moneyToPay += HotelRentIncrement;
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
         else
         {
@@ -136,24 +170,29 @@ public class Property : ISpacing  //requirement 6: inheritance
 
 
     }
-    static public void ExchangeProperty(Player player1, Property property1, Player player2, Property property2)
+    static public void ExchangeProperty(ref Player player1, Property property1, ref Player player2, Property property2)
     {
-        property1.SetNewOwner(ref player1, ref player2, 0);
-        property2.SetNewOwner(ref player2, ref player1, 0);
+        property1.Owner = player2;
+        player2.Properties = player2.Properties + property1;
+        player1.Properties = player1.Properties - property1;
+        property2.Owner = player1;
+        player1.Properties = player1.Properties + property2;
+        player2.Properties = player2.Properties - property2;
+
     }
 
-    public virtual void Action(Player player)
+    public virtual void Action(ref Player player)
     {
         if (this.Owner.Name == null)
         {
-            this.SetOwner(player);
+            this.SetOwner(ref player);
         }
         else
         {
-            this.PayRent(player);
+            this.PayRent(ref player);
         }
     }
-    public virtual void PayRent(Player player)
+    public virtual void PayRent(ref Player player)
     {
         player.moneyToPay += this.Rent;
         this.Owner.moneyToPay -= this.Rent;
@@ -163,6 +202,12 @@ public class Property : ISpacing  //requirement 6: inheritance
     {
         var output = new List<Property>(groupOfProperties);
         output.Add(property);
+        return output;
+    }
+    public static IEnumerable<Property> operator -(IEnumerable<Property> groupOfProperties, Property property)
+    {
+        var output = new List<Property>(groupOfProperties);
+        output.Remove(property);
         return output;
     }
 

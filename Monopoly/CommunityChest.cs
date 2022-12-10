@@ -8,7 +8,7 @@ public class CommunityChest : ISpacing, IRandomCard
     }
     public int Id { get; set; }
 
-    public void DoAThing(Player player)
+    public void DoAThing(ref Player player)
     {
         int probability = new Random().Next(0, 7);
         if (probability <= 5)
@@ -23,9 +23,9 @@ public class CommunityChest : ISpacing, IRandomCard
         }
     }
 
-    void ISpacing.Action(Player player)
+    void ISpacing.Action(ref Player player)
     {
-        DoAThing(player);
+        DoAThing(ref player);
     }
 
     public static bool operator ==(CommunityChest property, CommunityChest property2)

@@ -10,7 +10,7 @@ public class Chance : ISpacing, IRandomCard
     public int Id { get; set; }
 
 
-    public void DoAThing(Player player)
+    public void DoAThing(ref Player player)
     {
         int probability = new Random().Next(0, 7);
         if (probability <= 1)
@@ -25,9 +25,9 @@ public class Chance : ISpacing, IRandomCard
         }
     }
 
-    void ISpacing.Action(Player player)
+    void ISpacing.Action(ref Player player)
     {
-        DoAThing(player);
+        DoAThing(ref player);
     }
 
     public static bool operator ==(Chance property, Chance property2)

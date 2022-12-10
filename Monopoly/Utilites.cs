@@ -15,15 +15,15 @@ public class Utilities : Property, ISpacing
         Rent2=int.Parse(characs[4]);
 
     }
-    public virtual void Action(Player player)
+    public virtual void Action(ref Player player)
     {
         if(this.Owner.Name==null)
         {
-            this.SetOwner(player);
+            this.SetOwner(ref player);
         }
         else
         {
-          this.PayRent(player);  
+          this.PayRent(ref player);  
         }
     }
 

@@ -40,15 +40,15 @@ public class Railroad : Property, ISpacing  //Requirement 3: Third class definit
             return true;
         }
     }
-    public override void Action(Player player)
+    public override void Action(ref Player player)
     {
         if (this.Owner.Name == null)
         {
-            this.SetOwner(player);
+            this.SetOwner(ref player);
         }
         else
         {
-            this.PayRent(player);
+            this.PayRent(ref player);
         }
     }
 
