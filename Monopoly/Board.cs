@@ -1,46 +1,48 @@
 namespace Monopoly;
 public class Board    //requirement 1 a class definition
 {
-    public Tuple<ISpacing, Player[]>?[] GameBoard
+    public ISpacing[] GameBoard
     {
         get; set;
     }
-    public Board(Player[] players, string path)
+    public Board( string path)
     {
-        GameBoard = new Tuple<ISpacing, Player[]>[40];
+        GameBoard = new ISpacing[40];
         var parkingLot = new FreeParkingLot();
         var jail = new Jail();
         var startingPoint = new StartingPoint();
-        GameBoard[startingPoint.Id] = new Tuple<ISpacing, Player[]>(startingPoint, players);
-        GameBoard[parkingLot.Id] = new Tuple<ISpacing, Player[]>(parkingLot, new Player[5]);
-        GameBoard[jail.Id] = new Tuple<ISpacing, Player[]>(jail, new Player[5]);
+        var incomingTax= new IncomingTax();
+        GameBoard[startingPoint.Id] = startingPoint;
+        GameBoard[parkingLot.Id] = parkingLot;
+        GameBoard[jail.Id] =jail;
+        GameBoard[incomingTax.Id]= incomingTax;
         for (int i = 0; i < GameBoard.Length; i++)
         {
             if (GameBoard[i] == null)
             {
                 if (File.ReadAllLines(path)[i].Split(",").Length == 11)
                 {
-                    GameBoard[i] = new Tuple<ISpacing, Player[]>(new Property(File.ReadAllLines(path)[i].Split(",")), new Player[5]);
+                    GameBoard[i] = new Property(File.ReadAllLines(path)[i].Split(","));
                 }
                 else if (File.ReadAllLines(path)[i].Split(",").Length == 4)
                 {
-                    GameBoard[i] = new Tuple<ISpacing, Player[]>(new Railroad(File.ReadAllLines(path)[i].Split(",")), new Player[5]);
+                    GameBoard[i] =new Railroad(File.ReadAllLines(path)[i].Split(","));
                 }
                 else if (File.ReadAllLines(path)[i].Split(",").Length == 5)
                 {
-                    GameBoard[i] = new Tuple<ISpacing, Player[]>(new Utilities(File.ReadAllLines(path)[i].Split(",")), new Player[5]);
+                    GameBoard[i] = new Utilities(File.ReadAllLines(path)[i].Split(","));
                 }
                 else if (File.ReadAllLines(path)[i].Split(",")[1] == "C")
                 {
-                    GameBoard[i] = new Tuple<ISpacing, Player[]>(new CommunityChest(File.ReadAllLines(path)[i].Split(",")[0]), new Player[5]);
+                    GameBoard[i] = new CommunityChest(File.ReadAllLines(path)[i].Split(",")[0]);
                 }
                 else if (File.ReadAllLines(path)[i].Split(",")[1] == "Ch")
                 {
-                    GameBoard[i] = new Tuple<ISpacing, Player[]>(new Chance(File.ReadAllLines(path)[i].Split(",")[0]), new Player[5]);
+                    GameBoard[i] = new Chance(File.ReadAllLines(path)[i].Split(",")[0]);
                 }
                 else if (int.Parse(File.ReadAllLines(path)[i].Split(",")[0]) == 12 || int.Parse(File.ReadAllLines(path)[i].Split(",")[0]) == 12)
                 {
-                    GameBoard[i] = new Tuple<ISpacing, Player[]>(new Utilities((File.ReadAllLines(path)[i]).Split(",")), new Player[5]);
+                    GameBoard[i] = new Utilities((File.ReadAllLines(path)[i]).Split(","));
                 }
             }
         }
@@ -126,18 +128,19 @@ public class Board    //requirement 1 a class definition
          It is currently the turn of {players[indexOfCurrent].Name}
         You currently have ₩{players[indexOfCurrent].Money}
         Your properties are: {propertiesToDisplay}
-        For exchanging properties, type exchange
-        For adding green houses, type addhouse
-        For adding hotels, type addhotel
-        To roll the dices, type dice";
+        For exchanging properties, press E
+        For selling properties, press S
+        For adding green houses, press C
+        For adding hotels, press H
+        To roll the dices, press R";
 
         return output;
     }
-    static public Tuple<int, int> RollDices(Player player)
+    static public void RollDices(ref Player player)
     {
         int numberDice1 = new Random().Next(1, 7);
         int numberDice2 = new Random().Next(1, 7);
-        return new Tuple<int, int>(numberDice1, numberDice2);
+        player.CurrentPosition+=numberDice1+numberDice2;
     }
     //This method is the most important of the game 
     // public void processTurn(ref Player[] players, Player player)
@@ -158,9 +161,9 @@ public class Board    //requirement 1 a class definition
         {
             if (player.Name!=null )
             {
-                if (((Player)player).CurrentPosition == CurrentPosition)
+                if (player.CurrentPosition == CurrentPosition)
                 {
-                    output += $"[{((Player)player).token}]";
+                    output += $"[{player.token}]";
                 }
                 else
                 {
