@@ -5,8 +5,13 @@ public class Jail : ISpacing  //Requireement 2: Second class definition
     public int Id { get; } = 10;
 
 
-    void ISpacing.Action(ref Player player)
+    public void Action(ref Player player)
     {
-        throw new NotImplementedException();
+        if(player.wasSentInJail)
+        {
+            player.moneyToPay+=300;
+            player.wasSentInJail=false;
+        }
+        
     }
 }

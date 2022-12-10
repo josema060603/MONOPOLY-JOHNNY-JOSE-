@@ -23,7 +23,7 @@ public class CommunityChest : ISpacing, IRandomCard
         }
     }
 
-    void ISpacing.Action(ref Player player)
+    public void Action(ref Player player)
     {
         DoAThing(ref player);
     }
