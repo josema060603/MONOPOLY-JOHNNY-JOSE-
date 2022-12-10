@@ -138,8 +138,8 @@ public class Property : ISpacing  //requirement 6: inheritance
     }
     static public void ExchangeProperty(Player player1, Property property1, Player player2, Property property2)
     {
-        property1.SetNewOwner(player1, player2, 0);
-        property2.SetNewOwner(player2, player1, 0);
+        property1.SetNewOwner(ref player1, ref player2, 0);
+        property2.SetNewOwner(ref player2, ref player1, 0);
     }
 
     public virtual void Action(Player player)

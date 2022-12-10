@@ -14,8 +14,8 @@ public static class ExtensionMethod
             return true;
         return false;
     }
-
-    public static void SetNewOwner(this Property property, Player newOwner, Player oldOwner, int price)
+        //
+    public static void SetNewOwner(this Property property, ref Player newOwner, ref Player oldOwner, int price)
     {
 
         if (newOwner.Money - price < 0)
@@ -27,7 +27,7 @@ public static class ExtensionMethod
             newOwner.moneyToPay += price;
             oldOwner.Money = oldOwner.Money + price;
             oldOwner.Properties = from x in oldOwner.Properties where x != property select x;
-            newOwner.Properties += property;
+            newOwner.Properties=newOwner.Properties + property;
             property.Owner = newOwner;
         }
     }
@@ -36,8 +36,8 @@ public static class ExtensionMethod
     {
 
         Owner.moneyToPay += property.Price;
+        Owner.Properties=Owner.Properties + property;
         property.Owner = Owner;
-        Owner.Properties += property;
         //After this part, the new owner has been already changed, nonetheless, it is important to check if this completes a color set.
         if (property.Id != 5 && property.Id != 15 && property.Id != 25 && property.Id != 35)
         {
