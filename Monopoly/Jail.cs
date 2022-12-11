@@ -9,7 +9,7 @@ public class Jail : ISpacing  //Requireement 2: Second class definition
     {
         if(player.wasSentInJail)
         {
-            player.moneyToPay+=300;
+            player.moneyToPay+=100;
             player.wasSentInJail=false;
         }
         

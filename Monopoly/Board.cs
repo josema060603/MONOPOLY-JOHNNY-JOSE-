@@ -5,17 +5,19 @@ public class Board    //requirement 1 a class definition
     {
         get; set;
     }
-    public Board( string path)
+    public Board(string path)
     {
         GameBoard = new ISpacing[40];
         var parkingLot = new FreeParkingLot();
         var jail = new Jail();
         var startingPoint = new StartingPoint();
-        var incomingTax= new IncomingTax();
+        var incomingTax = new IncomingTax();
+        var goToJail = new GoToJail();
+        GameBoard[goToJail.Id] = goToJail;
         GameBoard[startingPoint.Id] = startingPoint;
         GameBoard[parkingLot.Id] = parkingLot;
-        GameBoard[jail.Id] =jail;
-        GameBoard[incomingTax.Id]= incomingTax;
+        GameBoard[jail.Id] = jail;
+        GameBoard[incomingTax.Id] = incomingTax;
         for (int i = 0; i < GameBoard.Length; i++)
         {
             if (GameBoard[i] == null)
@@ -26,7 +28,7 @@ public class Board    //requirement 1 a class definition
                 }
                 else if (File.ReadAllLines(path)[i].Split(",").Length == 4)
                 {
-                    GameBoard[i] =new Railroad(File.ReadAllLines(path)[i].Split(","));
+                    GameBoard[i] = new Railroad(File.ReadAllLines(path)[i].Split(","));
                 }
                 else if (File.ReadAllLines(path)[i].Split(",").Length == 5)
                 {
@@ -40,7 +42,7 @@ public class Board    //requirement 1 a class definition
                 {
                     GameBoard[i] = new Chance(File.ReadAllLines(path)[i].Split(",")[0]);
                 }
-                else if (int.Parse(File.ReadAllLines(path)[i].Split(",")[0]) == 12 || int.Parse(File.ReadAllLines(path)[i].Split(",")[0]) == 12)
+                else if (int.Parse(File.ReadAllLines(path)[i].Split(",")[0]) == 12 || int.Parse(File.ReadAllLines(path)[i].Split(",")[0]) == 27)
                 {
                     GameBoard[i] = new Utilities((File.ReadAllLines(path)[i]).Split(","));
                 }
@@ -140,7 +142,7 @@ public class Board    //requirement 1 a class definition
     {
         int numberDice1 = new Random().Next(1, 7);
         int numberDice2 = new Random().Next(1, 7);
-        player.CurrentPosition+=numberDice1+numberDice2;
+        player.CurrentPosition += numberDice1 + numberDice2;
     }
     //This method is the most important of the game 
     // public void processTurn(ref Player[] players, Player player)
@@ -159,7 +161,7 @@ public class Board    //requirement 1 a class definition
         string output = "";
         foreach (var player in players)
         {
-            if (player.Name!=null )
+            if (player.Name != null)
             {
                 if (player.CurrentPosition == CurrentPosition)
                 {
