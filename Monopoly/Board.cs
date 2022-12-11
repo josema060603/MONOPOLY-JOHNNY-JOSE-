@@ -13,7 +13,7 @@ public class Board    //requirement 1 a class definition
         var startingPoint = new StartingPoint();
         var incomingTax = new IncomingTax();
         var goToJail = new GoToJail();
-        GameBoard[goToJail.Id] = goToJail;
+        GameBoard[new GetID<GoToJail>(goToJail).GetId()] = goToJail;
         GameBoard[startingPoint.Id] = startingPoint;
         GameBoard[parkingLot.Id] = parkingLot;
         GameBoard[jail.Id] = jail;
@@ -142,20 +142,15 @@ public class Board    //requirement 1 a class definition
     {
         int numberDice1 = new Random().Next(1, 7);
         int numberDice2 = new Random().Next(1, 7);
-        player.CurrentPosition += numberDice1 + numberDice2;
+        int ToMove = numberDice1 + numberDice2;
+        if (ToMove + player.CurrentPosition > 39)
+        {
+            player.CurrentPosition = 0;
+            player.Money += 200;
+        }
+        player.CurrentPosition += ToMove;
     }
-    //This method is the most important of the game 
-    // public void processTurn(ref Player[] players, Player player)
-    // {
-    //     if (player.moneyToPay > player.Money)
-    //     {
-    //         players = (Player[])from p in players where p != player select p;
-    //     }
-    //     else
-    //     {
-    //         player.Money -= player.moneyToPay;
-    //     }
-    // }
+
     public string PlayerIsHere(Player[] players, int CurrentPosition)
     {
         string output = "";
