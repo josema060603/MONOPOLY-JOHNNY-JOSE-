@@ -1,7 +1,6 @@
 namespace Monopoly;
-public class Jail : ISpacing  //Requireement 2: Second class definition
-{   //Requirement 7 Polymorphism with Id from ISpacing
-
+public class Jail : ISpacing  //REQUIREMENT 2: second class definition, the class of jail only takes money if the user was sent there from the go to jail class.
+{
     public int Id { get; } = 10;
 
 

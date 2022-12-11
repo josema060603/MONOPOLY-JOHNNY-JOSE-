@@ -1,5 +1,5 @@
 namespace Monopoly;
-public class FreeParkingLot : ISpacing
+public class FreeParkingLot : ISpacing //REQUIREMNT 3: A third class definition, each box has a different class
 {
     public int Id { get ; set ; }=20;
 

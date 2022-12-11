@@ -1,6 +1,6 @@
 namespace Monopoly;
 
-public class CommunityChest : ISpacing, IRandomCard
+public class CommunityChest : ISpacing, IRandomCard //REQUIREMENT 3: A third class definition, we made a class just for community chests, that their chances of winning or gaining money are different
 {
     public CommunityChest(string id)
     {
@@ -13,13 +13,13 @@ public class CommunityChest : ISpacing, IRandomCard
         int probability = new Random().Next(0, 7);
         if (probability <= 5)
         {
-            player.Money += new Random().Next(-300, 301);
+            player.Money += new Random().Next(-100, 101);
         }
 
         else
         {
             player.CurrentPosition = 10;
-            player.wasSentInJail=true;
+            player.wasSentInJail = true;
         }
     }
 
@@ -29,7 +29,8 @@ public class CommunityChest : ISpacing, IRandomCard
     }
 
     public static bool operator ==(CommunityChest property, CommunityChest property2)
-    { //EXTRA POINTS: OPERATOR OVERLOADING
+    { //EXTRA POINTS: OPERATOR OVERLOADING: again, we provided with a comparer of community chest to see whether they are the same or not.
+
         if (property.Id == property2.Id)
         {
             return true;
@@ -41,7 +42,8 @@ public class CommunityChest : ISpacing, IRandomCard
     }
 
     public static bool operator !=(CommunityChest property, CommunityChest property2)
-    {
+    { //EXTRA POINTS: OPERATOR OVERLOADING: again, we provided with a comparer of community chest to see whether they are the same or not.
+
         if (property.Id == property2.Id)
         {
             return false;

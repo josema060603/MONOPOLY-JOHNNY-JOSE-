@@ -1,5 +1,17 @@
 Read Me file with a description of the overall proyect.
 
+Our project:
+Our project is going to be a monopoly. The reason of this, is because it implements different concepts we used in class and the lab in a whole game. Furthermore, we both like the game and were wondering how easy it would be to make the game with simple implementations
+
+Our goal:
+As a person who forgets stuff, I want to create a game that people can play anywhere without the need of a leaderboard, so that anyone who usually loose the pieces of their monopoly or does not take care of the physical board game, do not have to worry about carrying every single part of the game to have fun with their friends.  People often times hardly take care of board games. They are tricky and if you have many pieces lost, the game experience goes down. Nonetheless, by making it a digital game, it would make playing monopoly anything anyone can do at anywhere with a smart device.
+
+
+
+
+
+
+
 "# Monopoly-Johnny-Jose" 
 "# Monopoly-Johnny-Jose" 
 1. Write down the properties we will create, their prices, and everything to make the game balanced. Furthermore, stablish how much money each one will have at the beggining of the game. The random cards that appear throughout the game logistic
@@ -31,7 +43,7 @@ Notes:
 We started with the creation of everything in order to create tests. This tests failed and we did this in order check the implementation of everything later. We also defined the  main rules of our game.
 
 
-
+SCOPE:
 
 Implementation of the game:
 class Board:

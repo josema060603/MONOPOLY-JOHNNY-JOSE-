@@ -1,5 +1,5 @@
 namespace Monopoly;
-public class Board    //requirement 1 a class definition
+public class Board    //REQUIREMENT 1: a class definition, we used a class for board so it is a new instance everytime we start a new game.
 {
     public ISpacing[] GameBoard
     {
@@ -18,7 +18,7 @@ public class Board    //requirement 1 a class definition
         GameBoard[parkingLot.Id] = parkingLot;
         GameBoard[jail.Id] = jail;
         GameBoard[incomingTax.Id] = incomingTax;
-        for (int i = 0; i < GameBoard.Length; i++)
+        for (int i = 0; i < GameBoard.Length; i++)//EXTRA CREDIT: Using an IO; we used IO namespace to read from a CSV file and obtain the data from each property.
         {
             if (GameBoard[i] == null)
             {
@@ -51,6 +51,9 @@ public class Board    //requirement 1 a class definition
 
 
     }
+    ///<summary>
+    ///This method has as parameters an array of players, and the index of the current player. It will return an updated string containing the position and the tokens represneting each player as well as a menu that explains the options that the current player can choose from.
+    ///</summary>
     public string GetBoardAsString(Player[] players, int indexOfCurrent)
     {
         var propertiesToDisplay = "";
@@ -138,6 +141,9 @@ public class Board    //requirement 1 a class definition
 
         return output;
     }
+    ///<summary>
+    /// RollDices will produce 2 random numbers and the sum of them are going to be the player´s current position.
+    /// </summary>
     static public void RollDices(ref Player player)
     {
         int numberDice1 = new Random().Next(1, 7);

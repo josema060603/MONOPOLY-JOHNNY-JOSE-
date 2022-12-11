@@ -1,6 +1,6 @@
 namespace Monopoly;
 
-public class GoToJail : ISpacing
+public class GoToJail : ISpacing //REQUIREMENT 3: Third class definition, again, each box has its specific class, in this case this one sends the player to Jail
 {
 
     public int Id { get; } = 30;
@@ -9,7 +9,7 @@ public class GoToJail : ISpacing
         player.CurrentPosition=10;
         player.wasSentInJail=true;
     }
-    void ISpacing.Action(ref Player player)
+    public void Action(ref Player player)
     {
         PlayerGoesToJail(ref player);
     }

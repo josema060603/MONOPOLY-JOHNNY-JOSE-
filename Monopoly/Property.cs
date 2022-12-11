@@ -2,8 +2,8 @@ namespace Monopoly;
 
 //Each property box will contain the property of Owner, price, number of green houses, number of red
 //houses, and color of property.
-public class Property : ISpacing  //requirement 6: inheritance
-{           //Requirenent 8: Second Example of Polymorphism
+public class Property : ISpacing  //// REQUIREMENT 6: Inheritance, we made possible to inherite from property class, since the item inherited can be owned.
+{           //REQUIREMENT 8: Polymophism: The method set characteristics is abstract, so each of the different inherited classes read from the IO differently
     public Property(string[] characs)
     {
         SetCharacteristics(characs);
@@ -13,8 +13,8 @@ public class Property : ISpacing  //requirement 6: inheritance
 
     public string Name { get; protected set; }
     private bool colorSetComplete;
-    public bool ColorSetComplete { get { return colorSetComplete; } set { if (value == true) { Rent = RentWithColorSet; } colorSetComplete = value; } }
-    public Player Owner;      //Requirement 11: Properties
+    public bool ColorSetComplete { get { return colorSetComplete; } set { if (value == true) { Rent = RentWithColorSet; } colorSetComplete = value; } } //REQUIREMENT 11: Use of properties, in this case, we made a personalized set  in order to increase rent after color set is complete
+    public Player Owner;      
 
     public int Price
     {
@@ -80,7 +80,13 @@ public class Property : ISpacing  //requirement 6: inheritance
         }
     }
 
+//EXTRA POINTS: XML, we used xml in order clear up what the method does
 
+    
+
+    ///<sumamry>
+    ///This function will add a green house if the color set is complete and if there are less than 4 green houses. If those requirement are not met, it will return an exception
+    ///</summary>
     public void AddGreenHouse(ref Player player)
     {
 
@@ -91,28 +97,28 @@ public class Property : ISpacing  //requirement 6: inheritance
                 if (GreenHouses == 1)
                 {
                     Rent = GreenHouseRentIncrement1;
-                    if (player.moneyToPay < GreenHouseRentIncrement1)
+                    if (player.Money < GreenHouseRentIncrement1)
                     { throw new Exception(); }
                     player.moneyToPay += GreenHouseRentIncrement1;
                 }
                 else if (GreenHouses == 2)
                 {
                     Rent = GreenHouseRentIncrement2;
-                    if (player.moneyToPay < GreenHouseRentIncrement1)
+                    if (player.Money < GreenHouseRentIncrement1)
                     { throw new Exception(); }
                     player.moneyToPay += GreenHouseRentIncrement2;
                 }
                 else if (GreenHouses == 3)
                 {
                     Rent = GreenHouseRentIncrement3;
-                    if (player.moneyToPay < GreenHouseRentIncrement1)
+                    if (player.Money < GreenHouseRentIncrement1)
                     { throw new Exception(); }
                     player.moneyToPay += GreenHouseRentIncrement3;
                 }
                 else if (GreenHouses == 4)
                 {
                     Rent = GreenHouseRentIncrement4;
-                    if (player.moneyToPay < GreenHouseRentIncrement1)
+                    if (player.Money < GreenHouseRentIncrement1)
                     { throw new Exception(); }
                     player.moneyToPay += GreenHouseRentIncrement4;
                 }
@@ -125,6 +131,14 @@ public class Property : ISpacing  //requirement 6: inheritance
 
 
     }
+
+//EXTRA POINTS: XML, we used xml in order clear up what the method does
+
+
+
+    ///<summary
+    ///This function will add a hotel if the player can affort it and if there are more than 3 green houses and less than 2 houses, if those requirements are not met, it will throw an exception
+    ///</summary
     public void AddHotel(ref Player player)
     {
         if (player.moneyToPay > HotelRentIncrement)
@@ -170,6 +184,14 @@ public class Property : ISpacing  //requirement 6: inheritance
 
 
     }
+
+//EXTRA POINTS: XML, we used xml in order clear up what the method does
+
+
+
+    ///<summary>
+    /// EchangeProperty is the responsible of making a trade with properties. they can only trade 1 with 1, and the player´s money remain the same
+    ///</summary>
     static public void ExchangeProperty(ref Player player1, Property property1, ref Player player2, Property property2)
     {
         property1.Owner = player2;
@@ -181,7 +203,7 @@ public class Property : ISpacing  //requirement 6: inheritance
 
     }
 
-    public virtual void Action(ref Player player)
+    public virtual void Action(ref Player player)//REQUIREMENT 8: Polymorphism
     {
         if (this.Owner.Name == null)
         {
@@ -192,7 +214,7 @@ public class Property : ISpacing  //requirement 6: inheritance
             this.PayRent(ref player);
         }
     }
-    public virtual void PayRent(ref Player player)
+    public virtual void PayRent(ref Player player)//REQUIREMENT 8: Polymorphism
     {
         player.moneyToPay += this.Rent;
         this.Owner.moneyToPay -= this.Rent;
@@ -212,6 +234,6 @@ public class Property : ISpacing  //requirement 6: inheritance
     }
 
 
-    public enum Color { Brown, SkyBlue, Pink, Orange, Red, Yellow, Green, Blue }   //feature 5: enumerator type
+    public enum Color { Brown, SkyBlue, Pink, Orange, Red, Yellow, Green, Blue }   //REQUIREMENT 5: Enum, we made the tokens enums, since their index is an integer and would allows to generate a random token for each player.
 
 }
