@@ -372,6 +372,9 @@ public class Tests
         ienumerable -=property;
         Assert.IsTrue(!(((List<Property>)ienumerable).Contains(property)));
     }
+
+
+    //This test works on our computers, nonetheless, it does not in MACbooks because of the \r characters.
     [Test]
     public void TestGetString(){
         var board= new Board("../../../../properties.csv");
