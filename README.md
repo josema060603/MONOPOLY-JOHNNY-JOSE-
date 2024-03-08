@@ -1,9 +1,7 @@
 Read Me file with a description of the overall proyect.
 
-Our project:
-Our project is going to be a monopoly. The reason of this, is because it implements different concepts we used in class and the lab in a whole game. Furthermore, we both like the game and were wondering how easy it would be to make the game with simple implementations
 
-Our goal:
+Goal:
 As a person who forgets stuff, I want to create a game that people can play anywhere without the need of a leaderboard, so that anyone who usually loose the pieces of their monopoly or does not take care of the physical board game, do not have to worry about carrying every single part of the game to have fun with their friends.  People often times hardly take care of board games. They are tricky and if you have many pieces lost, the game experience goes down. Nonetheless, by making it a digital game, it would make playing monopoly anything anyone can do at anywhere with a smart device.
 
 
